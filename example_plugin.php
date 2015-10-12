@@ -89,7 +89,9 @@ if ( ! defined( 'CMB_PATH') ) {
 
 // });
 
-
+############################
+# CMB EXAMPLE
+############################
 // add_filter( 'cmb_meta_boxes', function(array $meta_boxes ) {
 
 // 	// $fields = array(
