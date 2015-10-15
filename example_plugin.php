@@ -215,4 +215,49 @@ if ( ! defined( 'CMB_PATH') ) {
 // 		ob_end_clean();
 // 		return $temp;
 // 	});
+
+// if ( file_exists( dirname( __FILE__ ) . '/cmb2/init.php' ) ) {
+// 	require_once dirname( __FILE__ ) . '/cmb2/init.php';
+// } elseif ( file_exists( dirname( __FILE__ ) . '/CMB2/init.php' ) ) {
+// 	require_once dirname( __FILE__ ) . '/CMB2/init.php';
+// }
+############################
+# CMB2 EXAMPLE
+############################
+// add_action( 'cmb2_admin_init', 'yourprefix_register_demo_metabox' );
+// function yourprefix_register_demo_metabox() {
+
+// 	// Start with an underscore to hide fields from custom fields list
+// 	$prefix = '_yourprefix_demo_';
+
+// 	/**
+// 	 * Sample metabox to demonstrate each field type included
+// 	 */
+// 	$cmb_demo = new_cmb2_box( array(
+// 		'id'            => $prefix . 'metabox',
+// 		'title'         => __( 'Test Metabox', 'cmb2' ),
+// 		'object_types'  => array( 'page', ), // Post type
+// 		// 'show_on_cb' => 'yourprefix_show_if_front_page', // function should return a bool value
+// 		// 'context'    => 'normal',
+// 		// 'priority'   => 'high',
+// 		// 'show_names' => true, // Show field names on the left
+// 		// 'cmb_styles' => false, // false to disable the CMB stylesheet
+// 		// 'closed'     => true, // true to keep the metabox closed by default
+// 		) );
+// 	$cmb_demo->add_field( array(
+// 		'name'       => __( 'Test Text', 'cmb2' ),
+// 		'desc'       => __( 'field description (optional)', 'cmb2' ),
+// 		'id'         => $prefix . 'text',
+// 		'type'       => 'text',
+// 		'repeatable' => 'true' , 
+// 	   'sortable'      => true, // beta
+// 		'show_on_cb' => 'yourprefix_hide_if_no_cats', // function should return a bool value
+// 		// 'sanitization_cb' => 'my_custom_sanitization', // custom sanitization callback parameter
+// 		// 'escape_cb'       => 'my_custom_escaping',  // custom escaping callback parameter
+// 		// 'on_front'        => false, // Optionally designate a field to wp-admin only
+// 		// 'repeatable'      => true,
+// 		) );
+// }
+
+
 ?>
