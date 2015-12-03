@@ -22,6 +22,12 @@ function _tk_widgets_init() {
 }
 add_action( 'widgets_init', '_tk_widgets_init' );
 
+/*
+<?php if ( is_active_sidebar( 'search' ) ) : ?>
+	<?php dynamic_sidebar( 'search' ); ?>
+<?php endif; ?> 
+*/
+
 
 ###########################
 //REGISTER POST TYPE AND TAXONOMY
