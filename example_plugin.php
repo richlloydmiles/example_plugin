@@ -14,6 +14,13 @@ if ( ! defined( 'CMB_PATH') ) {
 	include_once( plugin_dir_path( __FILE__ ) . '/cmb/custom-meta-boxes.php' );
 }
 
+############################
+# Register Sidebar
+############################
+function _tk_widgets_init() {
+	register_sidebar( array('name' => 'Search Bar', 'id' => 'search') );
+add_action( 'widgets_init', '_tk_widgets_init' );
+}
 
 ###########################
 //REGISTER POST TYPE AND TAXONOMY
