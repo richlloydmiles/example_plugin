@@ -19,8 +19,9 @@ if ( ! defined( 'CMB_PATH') ) {
 ############################
 function _tk_widgets_init() {
 	register_sidebar( array('name' => 'Search Bar', 'id' => 'search') );
-add_action( 'widgets_init', '_tk_widgets_init' );
 }
+add_action( 'widgets_init', '_tk_widgets_init' );
+
 
 ###########################
 //REGISTER POST TYPE AND TAXONOMY
