@@ -194,13 +194,13 @@ get_theme_mod('phone' , '');
 //
 add_shortcode('latest_news' , function($args) {
 	ob_start();
-	query_posts( array(
-		'post_type' => 'venue',
+	//http://scribu.net/wordpress/advanced-metadata-queries.html
+query_posts( array(
+		'post_type' => 'listing',
 		'showposts' => '-1' ,
 		'orderby' => 'meta_value',
-		'meta_query' => array(
-			array('key' => 'featured'),
-			array('value' => '1')),
+		'meta_key' => 'user_id',
+		'meta_value' => '1',
 		)); 
  		?>
 		<div class="container">
