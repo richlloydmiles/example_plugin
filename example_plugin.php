@@ -222,6 +222,7 @@ query_posts( array(
 							if ($i%2 == 0) echo '</div><div class="row">';		
 										?>
  				<?php endwhile; // end of the loop. ?>	
+ 				<?php wp_reset_query(); ?>
  			</div>	
  		</div>
  		<?php
