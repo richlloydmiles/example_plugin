@@ -195,6 +195,19 @@ get_theme_mod('phone' , '');
 add_shortcode('latest_news' , function($args) {
 	ob_start();
 	//http://scribu.net/wordpress/advanced-metadata-queries.html
+	
+	
+	query_posts( array(
+		'post_type' => 'listing',
+		'showposts' => '-1' ,
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'product_category',
+				'terms'    => 'array('cat1' , 'cat2'),
+				)
+			)
+		)); 
+		
 query_posts( array(
 		'post_type' => 'listing',
 		'showposts' => '-1' ,
