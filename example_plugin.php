@@ -207,7 +207,8 @@ add_shortcode('latest_news' , function($args) {
 				)
 			)
 		)); 
-		
+	#$results = $GLOBALS['wpdb']->get_results( "SELECT * FROM wp_posts WHERE `post_type` ='checklist' AND `post_status` = 'publish'", OBJECT );
+	
 query_posts( array(
 		'post_type' => 'listing',
 		'showposts' => '-1' ,
