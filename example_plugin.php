@@ -203,7 +203,7 @@ add_shortcode('latest_news' , function($args) {
 		'tax_query' => array(
 			array(
 				'taxonomy' => 'product_category',
-				'terms'    => 'array('cat1' , 'cat2'),
+				'terms'    => array('cat1' , 'cat2'),
 				)
 			)
 		)); 
