@@ -7,6 +7,14 @@
 
 <?php 
 ############################
+# GET TERMS OF POST
+############################
+			
+	//Returns title of locations
+	$term_list = wp_get_post_terms($post->ID, 'location', array("fields" => "names"));
+	echo $term_list[0];
+									
+############################
 # GET POST CONTENT FROM ID
 ############################
 $my_postid = 9120;//This is page id or post id
