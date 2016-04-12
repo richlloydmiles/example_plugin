@@ -288,5 +288,22 @@ function yourprefix_register_demo_metabox() {
 		) );
 }
 
+###########################
+//USER META
+###########################
+
+if (isset($_POST['save_lpb_article'])) {
+	$article_to_add = get_the_id();
+	if (get_user_meta(get_current_user_id() , 'user_inspiration')) {
+		$articles = get_user_meta(get_current_user_id() , 'user_inspiration' , true);
+		if (!in_array(get_the_id(), $articles)) {
+			$articles[] = get_the_id();
+			delete_user_meta(get_current_user_id() , 'user_inspiration');
+			add_user_meta( get_current_user_id(), 'user_inspiration', $articles );
+		}
+	} else { 
+		add_user_meta( get_current_user_id(), 'user_inspiration', array(0 => get_the_id()) );
+	}
+}
 
 ?>
