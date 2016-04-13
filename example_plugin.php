@@ -6,6 +6,11 @@
 ?>
 
 <?php 
+
+
+
+
+
 ############################
 # GET TERMS OF POST
 ############################
@@ -323,4 +328,35 @@ if (isset($_POST['save_lpb_article'])) {
 	}
 }
 
+
+###########################
+//Premium Listing
+###########################
+
+
+return array(
+    'post_type'   => 'listing',
+    'posts_per_page' => 12,
+    'post_status' => 'publish',
+    'meta_query'  => array(
+        'relation' => 'OR',
+        array(
+            'key'     => 'premium_listing',
+            'compare' => 'NOT EXISTS',
+            ),
+        array(
+            'relation' => 'OR',
+            array(
+                'key'   => 'premium_listing',
+                'value' => 'on',
+                ),
+            array(
+                'key'     => 'premium_listing',
+                'value'   => 'on',
+                'compare' => '!=',
+                ),
+            ),
+        ),
+    'orderby'     => array( 'meta_value' => 'DESC' ),
+    );
 ?>
