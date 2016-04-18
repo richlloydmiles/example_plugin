@@ -19,10 +19,68 @@ add_action('init','add_location_to_directory_cat');
 function add_location_to_directory_cat() {
 	global $wp,$wp_rewrite;
 	$wp->add_query_var('directory_location');
-	$wp_rewrite->add_rule('directory-category/([^/]+)/location/([^/]+)/?', 'index.php?directory_category=$matches[1]&directory_location=$matches[2]', 'top');
-}
-//in theme - $location = get_query_var('directory_location');
 
+	add_rewrite_rule(
+		'directory-category/([^/]+)/location/([^/]+)?$',
+		'index.php?directory_category=$matches[1]&directory_location=$matches[2]',
+		'top'
+		);
+
+	add_rewrite_rule(
+		'directory-category/([^/]+)/location/([^/]+)/page/([0-9]+)?$',
+		'index.php?directory_category=$matches[1]&directory_location=$matches[2]&paged=$matches[3]',
+		'top'
+		);
+
+}
+/*in theme - $location = get_query_var('directory_location');
+$location_slug  = get_query_var( 'directory_location' );
+$directory_category_slug  = get_query_var( 'directory_category' );
+$location = get_term_by( 'slug', $location_slug , 'location' );
+	wp_reset_postdata();
+
+				$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+				
+				$args = array(
+					'paged' => $paged, 
+					'orderby'     => array( 'meta_value' => 'DESC' ),
+					'tax_query' => array(
+						'relation' => 'AND',
+						array(
+							'taxonomy' => 'directory_category',
+							'field'    => 'slug',
+							'terms'    => array($directory_category_slug),
+							) , 
+						array(
+							'taxonomy' => 'location',
+							'field'    => 'slug',
+							'terms'    => array($location_slug),
+							) , 
+						), 
+					'meta_query'  => array(
+						'relation' => 'OR',
+						array(
+							'key'     => 'premium_listing',
+							'compare' => 'NOT EXISTS',
+							),
+						array(
+							'relation' => 'OR',
+							array(
+								'key'   => 'premium_listing',
+								'value' => 'on',
+								),
+							array(
+								'key'     => 'premium_listing',
+								'value'   => 'on',
+								'compare' => '!=',
+								),
+							),
+						),
+					
+					); 
+
+				$query = new WP_Query( $args );
+*/
 ############################
 # GET TERMS OF POST
 ############################
