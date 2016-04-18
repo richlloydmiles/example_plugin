@@ -7,6 +7,13 @@
 # ADD VARS TO TAXONOMY PAGE
 ############################
 			
+global $wp_query; 
+?>
+<pre>
+	<?php print_r($wp_query->query_vars); ?>
+</pre>
+<?php	
+				
 add_action('init','add_location_to_directory_cat');
 
 function add_location_to_directory_cat() {
