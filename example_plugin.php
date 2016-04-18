@@ -3,9 +3,18 @@
  * Plugin Name:OTC Media Plugin
  */
 
-?>
+############################
+# ADD VARS TO TAXONOMY PAGE
+############################
+			
+add_action('init','add_location_to_directory_cat');
 
-<?php 
+function add_location_to_directory_cat() {
+	global $wp,$wp_rewrite;
+	$wp->add_query_var('directory_location');
+	$wp_rewrite->add_rule('directory-category/([^/]+)/location/([^/]+)/?', 'index.php?directory_category=$matches[1]&directory_location=$matches[2]', 'top');
+}
+//in theme - $location = get_query_var('directory_location');
 
 ############################
 # GET TERMS OF POST
