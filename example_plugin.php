@@ -391,53 +391,37 @@ function yourprefix_register_demo_metabox() {
 //CMB2 TAXONOMY EXAMPLE
 ###########################
 function taxonomy_metadata_cmb2_init() {
-// Including Taxonomy_MetaData_CMB2.php. Update to reflect your file structure
-	if ( ! class_exists( 'Taxonomy_MetaData_CMB2' ) ) {
-		require_once( 'Taxonomy_MetaData/Taxonomy_MetaData_CMB2.php' );
-	}
-	$results = $GLOBALS['wpdb']->get_results( "SELECT * FROM wp_posts WHERE `post_type` ='fact_attribute' AND `post_status` = 'publish'", OBJECT );
-	$titles = array();
 
 	$metabox_id = 'applications_box';
-	$cmb = new_cmb2_box( array(
-		'id' => $metabox_id,	
+	$cmb_term = new_cmb2_box( array(
+		'id'               => $metabox_id,
+		'title'            => __( 'Industry Metabox', 'cmb2' ), 
+		'object_types'     => array( 'term' ), 
+		'taxonomies'       => array( 'industry' )
 		) );
 
 
+	$applications = get_terms('application' , array(
+		'hide_empty' => false,
+		));
 
-	foreach ($results as $result) {
-		$titles[$result->ID] = $result->post_title;
+	$titles = array();
+	foreach ($applications as $application) {
+		$titles[$application->term_id] = $application->name;
 	}
 
-	$title = asort($titles);
-	$cmb->add_field( array( 
-		'name'             => 'Fact Attributes',
+	$cmb_term->add_field( array( 
+		'name'             => 'Associated applications',
 		'desc'             => 'Select an option',
-		'id'               => 'fact_cats',
+		'id'               => 'applications',
 		'type'             => 'select',
 		'show_option_none' => true,
-		'options'          => (1,2,3),
-		'repeatable'	   => true
+		'options'          => $titles,
 		) );
-		
-		// (Recommended) Use wp-large-options
-if ( ! defined( 'wlo_update_option' ) ) {
-	require_once( 'wp-large-options/wp-large-options.php' );
 }
 
-// wp-large-options overrides
-$wlo_overrides = array(
-	'get_option'    => 'wlo_get_option',
-	'update_option' => 'wlo_update_option',
-	'delete_option' => 'wlo_delete_option',
-	);
-		/**
-* Instantiate our taxonomy meta class
-*/
-$cats = new Taxonomy_MetaData_CMB2( 'directory_category', $metabox_id, __( 'Category Settings', 'taxonomy-metadata' ), $wlo_overrides );
-}
-
-add_action( 'cmb2_init', 'taxonomy_metadata_cmb2_init' );
+add_action( 'cmb2_admin_init', 'taxonomy_metadata_cmb2_init' );
+#front end - get_term_meta($term->term_id , 'applications' , false);
 ###########################
 //USER META
 ###########################
