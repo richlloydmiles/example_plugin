@@ -390,6 +390,13 @@ function yourprefix_register_demo_metabox() {
 ###########################
 //CMB2 TAXONOMY EXAMPLE
 ###########################
+
+// $cmb_directory = new_cmb2_box( array(
+// 		'id'            =>  'wedding_directory_page_metabox',
+// 		'title'         => __( 'Options', 'cmb2' ),
+// 		'object_types'  => array( 'page'), // Post type
+// 		'show_on'      => array( 'key' => 'id', 'value' => 10292 ),
+
 function taxonomy_metadata_cmb2_init() {
 
 	$metabox_id = 'applications_box';
