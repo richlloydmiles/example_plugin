@@ -350,7 +350,7 @@ if ( file_exists( dirname( __FILE__ ) . '/cmb2/init.php' ) ) {
 	require_once dirname( __FILE__ ) . '/CMB2/init.php';
 }
 ###########################
-//CMB2 EXAMPLE
+//CMB2 POST EXAMPLE
 ###########################
 add_action( 'cmb2_admin_init', 'yourprefix_register_demo_metabox' );
 function yourprefix_register_demo_metabox() {
@@ -386,6 +386,37 @@ function yourprefix_register_demo_metabox() {
 		// 'repeatable'      => true,
 		) );
 }
+
+###########################
+//CMB2 TAXONOMY EXAMPLE
+###########################
+function taxonomy_metadata_cmb2_init() {
+// Including Taxonomy_MetaData_CMB2.php. Update to reflect your file structure
+	if ( ! class_exists( 'Taxonomy_MetaData_CMB2' ) ) {
+		require_once( 'Taxonomy_MetaData/Taxonomy_MetaData_CMB2.php' );
+	}
+	$results = $GLOBALS['wpdb']->get_results( "SELECT * FROM wp_posts WHERE `post_type` ='fact_attribute' AND `post_status` = 'publish'", OBJECT );
+	$titles = array();
+
+
+
+
+	foreach ($results as $result) {
+		$titles[$result->ID] = $result->post_title;
+	}
+
+	$title = asort($titles);
+	$cmb->add_field( array( 
+		'name'             => 'Fact Attributes',
+		'desc'             => 'Select an option',
+		'id'               => 'fact_cats',
+		'type'             => 'select',
+		'show_option_none' => true,
+		'options'          => (1,2,3),
+		'repeatable'	   => true
+		) );
+}
+
 
 ###########################
 //USER META
