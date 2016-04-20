@@ -416,6 +416,17 @@ function taxonomy_metadata_cmb2_init() {
 		'repeatable'	   => true
 		) );
 		
+		// (Recommended) Use wp-large-options
+if ( ! defined( 'wlo_update_option' ) ) {
+	require_once( 'wp-large-options/wp-large-options.php' );
+}
+
+// wp-large-options overrides
+$wlo_overrides = array(
+	'get_option'    => 'wlo_get_option',
+	'update_option' => 'wlo_update_option',
+	'delete_option' => 'wlo_delete_option',
+	);
 		/**
 * Instantiate our taxonomy meta class
 */
