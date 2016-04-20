@@ -398,6 +398,10 @@ function taxonomy_metadata_cmb2_init() {
 	$results = $GLOBALS['wpdb']->get_results( "SELECT * FROM wp_posts WHERE `post_type` ='fact_attribute' AND `post_status` = 'publish'", OBJECT );
 	$titles = array();
 
+	$metabox_id = 'applications_box';
+	$cmb = new_cmb2_box( array(
+		'id' => $metabox_id,	
+		) );
 
 
 
