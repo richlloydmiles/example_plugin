@@ -2,6 +2,13 @@
 /*
  * Plugin Name:OTC Media Plugin
  */
+############################
+# TAXONOMY PAGES
+############################
+global $wp_query;
+$term = $wp_query->get_queried_object();
+#industry/test/ is taxonomy-industry.php for industry taxonomy and test term
+
 
 ############################
 # ADD VARS TO TAXONOMY PAGE
