@@ -352,6 +352,14 @@ if ( file_exists( dirname( __FILE__ ) . '/cmb2/init.php' ) ) {
 ###########################
 //CMB2 POST EXAMPLE
 ###########################
+
+// $cmb_directory = new_cmb2_box( array(
+// 		'id'            =>  'wedding_directory_page_metabox',
+// 		'title'         => __( 'Options', 'cmb2' ),
+// 		'object_types'  => array( 'page'), // Post type
+// 		'show_on'      => array( 'key' => 'id', 'value' => 10292 ),
+
+
 add_action( 'cmb2_admin_init', 'yourprefix_register_demo_metabox' );
 function yourprefix_register_demo_metabox() {
 
@@ -390,12 +398,6 @@ function yourprefix_register_demo_metabox() {
 ###########################
 //CMB2 TAXONOMY EXAMPLE
 ###########################
-
-// $cmb_directory = new_cmb2_box( array(
-// 		'id'            =>  'wedding_directory_page_metabox',
-// 		'title'         => __( 'Options', 'cmb2' ),
-// 		'object_types'  => array( 'page'), // Post type
-// 		'show_on'      => array( 'key' => 'id', 'value' => 10292 ),
 
 function taxonomy_metadata_cmb2_init() {
 
