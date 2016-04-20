@@ -433,7 +433,7 @@ $wlo_overrides = array(
 $cats = new Taxonomy_MetaData_CMB2( 'directory_category', $metabox_id, __( 'Category Settings', 'taxonomy-metadata' ), $wlo_overrides );
 }
 
-
+add_action( 'cmb2_init', 'taxonomy_metadata_cmb2_init' );
 ###########################
 //USER META
 ###########################
