@@ -415,6 +415,11 @@ function taxonomy_metadata_cmb2_init() {
 		'options'          => (1,2,3),
 		'repeatable'	   => true
 		) );
+		
+		/**
+* Instantiate our taxonomy meta class
+*/
+$cats = new Taxonomy_MetaData_CMB2( 'directory_category', $metabox_id, __( 'Category Settings', 'taxonomy-metadata' ), $wlo_overrides );
 }
 
 
