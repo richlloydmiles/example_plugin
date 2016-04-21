@@ -393,6 +393,17 @@ function yourprefix_register_demo_metabox() {
 		// 'on_front'        => false, // Optionally designate a field to wp-admin only
 		// 'repeatable'      => true,
 		) );
+		
+		#number field
+	$cmb_demo->add_field( array(
+		'name'       => __( 'No. of Pairs', 'cmb2' ),
+		'id'         =>  'no_of_pairs',
+		'type'       => 'text',
+		'attributes' => array(
+			'type' => 'number',
+			'pattern' => '\d*',
+			),
+		) );
 }
 
 ###########################
