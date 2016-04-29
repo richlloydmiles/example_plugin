@@ -509,5 +509,24 @@ return array(
 					'current' => max( 1, get_query_var('paged') ),
 					'total' => $wp_query->max_num_pages
 					) );
+/* posts per page
 
-					?>
+function wpse_modify_video_archive_query( $query ) {
+
+    // Only apply to the main loop on the frontend.
+	if ( is_admin() || ! $query->is_main_query()) {
+		return false;
+	} 
+
+	if ( $query->is_post_type_archive( 'video' ) ) {
+		$query->set( 'posts_per_page', 6 );
+	}
+
+	if ( $query->is_post_type_archive( 'testimonial' ) ) {
+		$query->set( 'posts_per_page', 6 );
+	}
+}
+
+
+add_action( 'pre_get_posts', 'wpse_modify_video_archive_query' ); */
+
