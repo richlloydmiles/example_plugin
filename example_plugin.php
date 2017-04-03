@@ -530,3 +530,23 @@ function wpse_modify_video_archive_query( $query ) {
 
 add_action( 'pre_get_posts', 'wpse_modify_video_archive_query' ); */
 
+  $solutions_articles_args = [
+    'post_type' => 'solution_article',
+    'posts_per_page' => -1,
+    'tax_query' => [
+      [
+        'taxonomy' => 'solution',
+        'field' => 'slug',
+        'terms' => $solution_slug
+      ]
+    ],    
+    'meta_query' => [
+      [
+        'key' => 'c_article_contact',
+        'compare' => 'EXISTS'
+      ]
+    ] 
+  ];
+  $solutions_articles_query = new WP_Query($solutions_articles_args);
+  $solution_article_posts = $solutions_articles_query->posts;
+
