@@ -550,3 +550,56 @@ add_action( 'pre_get_posts', 'wpse_modify_video_archive_query' ); */
   $solutions_articles_query = new WP_Query($solutions_articles_args);
   $solution_article_posts = $solutions_articles_query->posts;
 
+unction go2_africa_metabox_show_on_slug($display, $meta_box) {
+  if (!isset($meta_box['show_on']['key'], $meta_box['show_on']['value'])) {
+    return $display;
+  }
+
+  if ('slug' !== $meta_box['show_on']['key']) {
+    return $display;
+  }
+
+  $post_id = 0;
+
+  // If we're showing it based on ID, get the current ID
+  if (isset($_GET['post'])) {
+    $post_id = $_GET['post'];
+  } elseif (isset( $_POST['post_ID'])) {
+    $post_id = $_POST['post_ID'];
+  }
+
+  if (!$post_id) {
+    return $display;
+  }
+
+  $slug = get_post($post_id)->post_name;
+
+  return in_array($slug, (array) $meta_box['show_on']['value']);
+}
+
+// This is the offical function reccommended by cmb2
+add_filter('cmb2_show_on', 'go2_africa_metabox_show_on_slug', 10, 3);
+
+add_action('admin_head', 'hide_content_on_page');
+
+/*
+ * As suggested by https://github.com/CMB2/CMB2/issues/212
+ */
+function cmb2_get_user_options($query_args) {
+
+  $args = wp_parse_args($query_args, [
+    'fields' => ['user_login']
+  ]);
+
+  $users = get_users();
+
+  $user_options = [];
+  if ($users) {
+    foreach ($users as $user) {
+      $user_options[$user->ID] = $user->user_login;
+    }
+  }
+
+  return $user_options;
+}
+
